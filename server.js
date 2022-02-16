@@ -5,6 +5,7 @@ const cors= require('cors');
 const connect = require('./app/config/db');
 
 const userRoute = require("./app/routes/user.route");
+const tweetRoute = require("./tweets/routes/tweet.route");
 
 const PORT=5000;
 app.set("view engine", "ejs")
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json())
 
 app.use("/users",userRoute);
+app.use("/index",tweetRoute);
 
 app.get("/",(req,res,next)=>{
     res.render("index",{title: "Anamika"})

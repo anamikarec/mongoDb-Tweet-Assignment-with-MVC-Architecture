@@ -4,11 +4,9 @@ const mongoose  = require("mongoose");
 
 //Schema
 const UserSchema= new mongoose.Schema({
-    name: {type: String, required: true},
-    code: {type: String, required: true},
-    active: {type: Boolean, required: true},
-    followers: {type: Number, required: true}
-})
+    username: {type: String, required: true},
+    email: {type: String, required: true},
+   })
 
 //Models
 const User= mongoose.model("User",UserSchema);

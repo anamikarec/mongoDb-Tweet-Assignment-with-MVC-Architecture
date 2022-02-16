@@ -12,7 +12,7 @@ router.get("/", getAllUsers)
 
 router.get("/:user_id", getUser)
 
-router.get("/code/:code", getUserByCode)
+router.get("/username/:username", getUserByCode)
 
 
 router.post("/", upload.single("avatar") , createUser)

@@ -1,0 +1,14 @@
+<html lang="en">
+   <body>
+       <h1>Tweets</h1>
+       <% tweets.forEach( tweets => {%>
+         <div>
+             <h2 style = "text-decoration: underline;">Tweets :  <%= tweets.title %></h2>
+             <h2>Description : <%= tweets.description %></h2>
+             <p>tags : <%= tweets.tags %></p>
+             <%- include("./components/footer.ejs") %>
+         </div>
+      <% }) %>
+
+      </body>
+</html>

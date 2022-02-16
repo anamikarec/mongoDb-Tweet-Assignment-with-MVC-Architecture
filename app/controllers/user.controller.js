@@ -43,7 +43,7 @@ const getUser = async (req,res)=>{
 
 const getUserByCode = async (req,res)=>{
     try{
-        const user = await User.findOne({code: req.params.code});
+        const user = await User.findOne({username: req.params.username});
         if(!user) return res.status(400).json({msg: "User not found"})        
         res.status(200).json(user);
     }
@@ -63,13 +63,11 @@ const createUser = async (req,res)=>{
         }
 
         // * Create User
-        const doesUserExist= await User.findOne({code: req.body.code})
-        if(doesUserExist) return res.status(400).json({msg: "Duplicate code found"})
+        const doesUserExist= await User.findOne({username: req.body.username})
+        if(doesUserExist) return res.status(400).json({msg: "Duplicate user found"})
         const user = await User.create({
-            name: req.body.name,
-            code: req.body.code,
-            active: req.body.active,
-            followers: 0
+            username: req.body.username,
+            email: req.body.email
         })
 
         if(!user) return res.status(400).json({msg: "User not created"})
@@ -95,13 +93,13 @@ const deleteUser =  async (req,res)=>{
 
 const patchUser = async (req,res)=>{
     try{
-        if(!req.body.name) return res.status(400).json({msg: "Name is required"});
+        if(!req.body.username) return res.status(400).json({msg: "UserName is required"});
         const user = await User.findOneAndUpdate({ 
             _id: req.params.user_id 
         },{
             $set: {
-                name: req.body.name,
-                active: req.body.active
+                username: req.body.username,
+                email: req.body.email
             }
         },{
             returnOriginal: false
